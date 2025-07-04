@@ -144,6 +144,7 @@ void Chip8::loadProgram(const char* fname) {
 		{
 			memory[start_adress + i] = buffer[i]; 
 		}
+        std::cout << "loaded " << fname << std::endl;
 		delete[] buffer; // free the buffer memory
 	}
 }
