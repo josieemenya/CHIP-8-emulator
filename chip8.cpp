@@ -4,7 +4,7 @@
 #define pc programCounter
 #define opc opcode
 
-constexpr unsigned int start_adress = 0x200;
+constexpr unsigned int start_address = 0x200;
 
 
 
@@ -142,7 +142,7 @@ void Chip8::loadProgram(const char* fname) {
 		// copy the contents of the buffer into the memory of the chip8
 		for (long i = 0; i < size; i++)
 		{
-			memory[start_adress + i] = buffer[i]; 
+			memory[start_address + i] = buffer[i];
 		}
         std::cout << "loaded " << fname << std::endl;
 		delete[] buffer; // free the buffer memory

@@ -28,6 +28,9 @@ int main(int argc, char* argv[]) {
     {
         quit = platform.ProcessInput(chip8.keypad);
 
+        if (quit)
+            std::cerr << "Quit Signal Recieved" << std::endl;
+
         auto currentTime = std::chrono::high_resolution_clock::now();
         float dt = std::chrono::duration<float, std::chrono::milliseconds::period>(currentTime - lastCycleTime).count();
 

@@ -2,6 +2,9 @@
 
 #include "platform_layer.h"
 
+#include <iostream>
+#include <ostream>
+
 Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
   window = SDL_CreateWindow(title, 0, 0, w_w, w_h, SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
