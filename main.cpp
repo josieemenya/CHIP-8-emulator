@@ -40,6 +40,10 @@ int main(int argc, char* argv[]) {
 
             chip8.Cycle();
 
+            if (!chip8.display) {
+                std::runtime_error("Display Returned Null!");
+            }
+
             platform.Update(chip8.display, videoPitch);
         }
     }

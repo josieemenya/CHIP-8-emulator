@@ -30,7 +30,7 @@ class Chip8 {
 
 	//keyboard - held a 16-key hexiadecimal keepad, layout must be mapped into various other configs to fit keyboard of todays platforms
 	uint8_t keypad[16]; // Keypad state (0x0 - 0xF)
-	uint32_t display[64 * 32]; // Display (64x32 pixels)
+	uint32_t display[VIDEO_WIDTH * VIDEO_HEIGHT]; // Display (64x32 pixels)
 
 	//sprites, a grpup of bytes which are a binary rep of the desired picture, sprited are up to 15 byted
 	unsigned char sprites[15][5]; // Predefined sprites (0-9, A-F, and some others) - should be stores in the interpreter area pf chip 8 mem (0x00 to 0x1ff)
