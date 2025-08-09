@@ -6,9 +6,22 @@
 #include <ostream>
 
 Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
+	
   window = SDL_CreateWindow(title, 0, 0, w_w, w_h, SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, t_w, w_h);
+  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, t_w, t_h);
+  	if (!texture)
+		throw std::runtime_error("fuck youfewo"); 
+
+	if(!renderer){
+		throw std::runtime_error("THE FUCKING RENDERER");
+	}
+
+	if(!window){
+		throw std::runtime_error("the fucking widower");
+	}
+
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
 }
 
 Platform::~Platform(){
@@ -18,10 +31,13 @@ Platform::~Platform(){
 }
 
 void Platform::Update(vc buffer, int pitch){
-  SDL_UpdateTexture(texture, nullptr, buffer, pitch);
-  SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-  SDL_RenderPresent(renderer);
+	if (SDL_UpdateTexture(texture, nullptr, buffer, pitch) != 0) {
+        std::cerr << "SDL_UpdateTexture error: " << SDL_GetError();
+		return;
+    }
+  	SDL_RenderClear(renderer);
+  	SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+  	SDL_RenderPresent(renderer);
 }
 
 bool Platform::ProcessInput(uint8_t* keys)

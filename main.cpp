@@ -10,16 +10,28 @@ int main(int argc, char* argv[]) {
         std::exit(EXIT_FAILURE);
     }
 
+
+
     int videoScale = atoi(argv[1]);
     int cycleDelay = atoi(argv[2]);
     char const* romFilename = argv[3];
+
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    std::cerr << "SDL_Init Error: " << SDL_GetError();
+    std::cerr.flush();
+
+    return 1;
+    }
 
     Platform platform("CHIP-8 Emulator", VIDEO_WIDTH * videoScale, VIDEO_HEIGHT * videoScale, VIDEO_WIDTH, VIDEO_HEIGHT);
 
     Chip8 chip8;
     chip8.loadProgram(romFilename);
 
+
+
     int videoPitch = sizeof(chip8.display[0]) * VIDEO_WIDTH;
+    std::cout << videoPitch << std::endl; 
 
     auto lastCycleTime = std::chrono::high_resolution_clock::now();
     bool quit = false;
@@ -27,24 +39,31 @@ int main(int argc, char* argv[]) {
     while (!quit)
     {
         quit = platform.ProcessInput(chip8.keypad);
+        //std::cout << "After ProcessInput, quit=" << quit << std::endl;
 
         if (quit)
-            std::cerr << "Quit Signal Recieved" << std::endl;
+            std::cerr << "Quit Signal Recieved\n";
 
         auto currentTime = std::chrono::high_resolution_clock::now();
         float dt = std::chrono::duration<float, std::chrono::milliseconds::period>(currentTime - lastCycleTime).count();
+        //std::cout << "dt = " << dt << ", cycleDelay = " << cycleDelay << std::endl;
+
 
         if (dt > cycleDelay)
         {
             lastCycleTime = currentTime;
-
+            
             chip8.Cycle();
 
             if (!chip8.display) {
-                std::runtime_error("Display Returned Null!");
+                throw std::runtime_error("Display Returned Null!");
             }
 
+
+            //std::cout << "Calling Update()" << std::endl;
+            std::cout.flush(); 
             platform.Update(chip8.display, videoPitch);
+            //std::cout << "Update() Complete" << std::endl;
         }
     }
 

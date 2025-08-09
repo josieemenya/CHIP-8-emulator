@@ -1,0 +1,3 @@
+C:/Users/jossi/CLionProjects/chip8/CHIP-8-emulator/build/CMakeFiles/CHIP_8.dir
+C:/Users/jossi/CLionProjects/chip8/CHIP-8-emulator/build/CMakeFiles/edit_cache.dir
+C:/Users/jossi/CLionProjects/chip8/CHIP-8-emulator/build/CMakeFiles/rebuild_cache.dir

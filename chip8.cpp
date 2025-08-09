@@ -145,7 +145,10 @@ void Chip8::loadProgram(const char* fname) {
 			memory[start_address + i] = buffer[i];
 		}
         std::cout << "loaded " << fname << std::endl;
+		std::cout.flush();
 		delete[] buffer; // free the buffer memory
+	} else {
+    	throw std::runtime_error("Failed to Load ROM"); 
 	}
 }
 
@@ -347,12 +350,16 @@ void Chip8::OP_Dxyn()
 
 	registers[0xF] = 0;
 
+	std::cout << "Drawing sprite at (" << xPos << "," << yPos
+          << ") height=" << height << std::endl;
+
 	for (unsigned int row = 0; row < height; ++row)
 	{
 		uint8_t spriteByte = memory[indexRegister + row];
 
 		for (unsigned int col = 0; col < 8; ++col)
 		{
+
 			uint8_t spritePixel = spriteByte & (0x80u >> col);
 			uint32_t* screenPixel = &display[(yPos + row) * VIDEO_WIDTH + (xPos + col)];
 
