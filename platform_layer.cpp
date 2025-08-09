@@ -7,7 +7,7 @@
 
 Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
 	
-  window = SDL_CreateWindow(title, 0, 0, w_w, w_h, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w_w, w_h, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, t_w, t_h);
   	if (!texture)
