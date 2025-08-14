@@ -399,4 +399,7 @@ CMakeFiles/CHIP_8.dir/chip8.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/ranges_algobase.h \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/unicode.h \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/unicode-data.h \
- C:/msys64/ucrt64/include/c++/15.1.0/cstring
+ C:/msys64/ucrt64/include/c++/15.1.0/cstring \
+ C:/msys64/ucrt64/include/c++/15.1.0/algorithm \
+ C:/msys64/ucrt64/include/c++/15.1.0/bits/ranges_algo.h \
+ C:/msys64/ucrt64/include/c++/15.1.0/pstl/glue_algorithm_defs.h

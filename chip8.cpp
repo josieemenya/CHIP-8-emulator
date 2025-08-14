@@ -1,5 +1,6 @@
 #include "chip8.h"
 #include <cstring>
+#include <algorithm>
 
 #define pc programCounter
 #define opc opcode
@@ -31,11 +32,10 @@ Chip8::Chip8() : ramdGen(std::chrono::system_clock::now().time_since_epoch().cou
     table.at(0xE) = &Chip8::TableE;
     table.at(0xF) = &Chip8::TableF;
 
-    for(size_t i = 0; i < 0xE; i++){
-      table0[i] = &Chip8::OP_NULL;
-      table8[i] = &Chip8::OP_NULL;
-      tableE[i] = &Chip8::OP_NULL;
-    }
+	std::fill(table0.begin(), table0.end(), &Chip8::OP_NULL);
+	std::fill(table8.begin(), table8.end(), &Chip8::OP_NULL);
+	std::fill(tableE.begin(), tableE.end(), &Chip8::OP_NULL);
+
 
 
     table0.at(0x0) = &Chip8::OP_00E0;
@@ -54,9 +54,8 @@ Chip8::Chip8() : ramdGen(std::chrono::system_clock::now().time_since_epoch().cou
     tableE.at(0x1) = &Chip8::OP_ExA1;
     tableE.at(0xE) = &Chip8::OP_Ex9E;
 
-    for (size_t i = 0; i < 0x65; i++) {
-      tableF[i] = &Chip8::OP_NULL;
-    }
+    std::fill(tableF.begin(), tableF.end(), &Chip8::OP_NULL);
+
 
     tableF.at(0x07) = &Chip8::OP_Fx07;
     tableF.at(0x0A) = &Chip8::OP_Fx0A;
@@ -138,6 +137,11 @@ void Chip8::loadProgram(const char* fname) {
 		file.seekg(0, std::ios::beg); // go back to the beginning of the file
 		file.read(buffer, size); // read the contents of the file into the buffer
 		file.close(); // close the file
+
+		if(start_address + size > 4096){
+			delete[] buffer;
+			std::runtime_error("ROM File too large");
+		}
 
 		// copy the contents of the buffer into the memory of the chip8
 		for (long i = 0; i < size; i++)
