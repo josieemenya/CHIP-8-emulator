@@ -23,6 +23,8 @@ int main(int argc, char* argv[]) {
     return 1;
     }
 
+    SDL_Surface* WindowsIcon = SDL_LoadBMP("chip8windowsICON.bmp");
+
     Platform platform("CHIP-8 Emulator", VIDEO_WIDTH * videoScale, VIDEO_HEIGHT * videoScale, VIDEO_WIDTH, VIDEO_HEIGHT);
 
     Chip8 chip8;

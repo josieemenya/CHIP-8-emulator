@@ -21,6 +21,9 @@ Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
 		throw std::runtime_error("the fucking widower");
 	}
 
+	SDL_Surface* WindowsIcon = SDL_LoadBMP("../chip8windowsICON.bmp");
+    SDL_SetWindowIcon(window, WindowsIcon);
+
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
 }
 
