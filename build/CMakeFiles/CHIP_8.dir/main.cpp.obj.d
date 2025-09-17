@@ -399,4 +399,5 @@ CMakeFiles/CHIP_8.dir/main.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/ranges_algobase.h \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/unicode.h \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/unicode-data.h \
- C:\Users\jossi\CLionProjects\chip8\CHIP-8-emulator\platform_layer.h
+ C:\Users\jossi\CLionProjects\chip8\CHIP-8-emulator\platform_layer.h \
+ C:/vcpkg/installed/x64-windows/include/SDL2/SDL_audio.h

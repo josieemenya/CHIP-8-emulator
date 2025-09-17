@@ -258,6 +258,7 @@ CMakeFiles/CHIP_8.dir/platform_layer.cpp.obj: \
  C:/vcpkg/installed/x64-windows/include/SDL2/SDL_version.h \
  C:/vcpkg/installed/x64-windows/include/SDL2/SDL_locale.h \
  C:/vcpkg/installed/x64-windows/include/SDL2/SDL_misc.h \
+ C:/vcpkg/installed/x64-windows/include/SDL2/SDL_audio.h \
  C:/msys64/ucrt64/include/c++/15.1.0/iostream \
  C:/msys64/ucrt64/include/c++/15.1.0/ostream \
  C:/msys64/ucrt64/include/c++/15.1.0/bits/ostream.h \

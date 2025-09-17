@@ -11,7 +11,7 @@ Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, t_w, t_h);
   	if (!texture)
-		throw std::runtime_error("fuck youfewo"); 
+		throw std::runtime_error("fuck you two"); 
 
 	if(!renderer){
 		throw std::runtime_error("THE FUCKING RENDERER");
@@ -25,6 +25,17 @@ Platform::Platform(cc title, int w_w, int w_h, int t_w, int t_h){
     SDL_SetWindowIcon(window, WindowsIcon);
 
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
+
+	Uint8* audio_buf = nullptr;
+	Uint32 audio_len;
+
+	bFallenDown = SDL_LoadWAV("../FallenDown.wav", FallenDown, &audio_buf, &audio_len); 
+
+	if (bFallenDown){
+		std::cout << "playing fallen down";
+	} else {
+		std::cerr << "error not playing fallen down"; 
+	}
 }
 
 Platform::~Platform(){
